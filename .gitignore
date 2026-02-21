@@ -1,0 +1,5 @@
+.env
+*.env
+*.log
+app/Councilreports/
+app/Humanresources/

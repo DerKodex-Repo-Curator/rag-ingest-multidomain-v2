@@ -1,0 +1,30 @@
+services:
+  rag-ingest-multidomain-v2:
+    image: rag-ingest-multidomain-v2-rag-ingest-multi-domain:latest
+    container_name: rag-ingest-multidomain-v2
+    working_dir: /app
+    volumes:
+      # - /home/jmarc/rag-ingest-multidomain-v2/app:/app
+      - ./app:/app
+    environment:
+      TENANT_ID: ${TENANT_ID}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      SITE_ID: ${SITE_ID}
+      DRIVE_ID: ${DRIVE_ID}
+      # DOMAINS: Comma separated list of folders in SharePoint to track independently
+      DOMAINS: ${DOMAINS}
+      POLL_INTERVAL: ${POLL_INTERVAL}
+
+    # --- GPU CONFIGURATION (DISABLED) ---
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    # ------------------------------------
+
+    command: ["python", "ingest.py"]
+    restart: unless-stopped

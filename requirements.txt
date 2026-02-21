@@ -1,0 +1,13 @@
+transformers
+# torch  <-- Commented out to prevent downloading GPU version. We install CPU version in Dockerfile.
+sentencepiece
+protobuf
+faiss-cpu
+pypdf
+python-docx
+requests
+einops
+numpy<2.0.0
+# New dependencies for Phase 1
+langchain-text-splitters>=0.0.1
+tiktoken>=0.7.0
